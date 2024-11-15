@@ -8,6 +8,3 @@ export interface FileUploadResponse {
 export interface FileDownloadRequest {
   resumeId: string;
 }
-export interface FileDownloadResponse {
-  data: ArrayBuffer;
-}

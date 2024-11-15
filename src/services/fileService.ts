@@ -1,7 +1,6 @@
 import { ax, handleAxiosError } from './axios';
 import type {
   FileDownloadRequest,
-  FileDownloadResponse,
   FileUploadRequest,
   FileUploadResponse,
 } from '@/types/service/fileServiceType';
@@ -25,9 +24,9 @@ export const fileService = {
     }
   },
   // 파일 다운로드
-  fileDownload: async ({ resumeId }: FileDownloadRequest): Promise<FileDownloadResponse> => {
+  fileDownload: async ({ resumeId }: FileDownloadRequest): Promise<ArrayBuffer> => {
     try {
-      const response = await ax.get<FileDownloadResponse>(`/api/resumes/${resumeId}/download`, {
+      const response = await ax.get(`/api/resumes/${resumeId}/download`, {
         responseType: 'arraybuffer',
       });
       console.log('fileDownload Response:', response.data);
