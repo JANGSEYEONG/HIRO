@@ -1,7 +1,7 @@
 import {
   Sidebar,
   SidebarContent,
-  // SidebarFooter,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
@@ -9,12 +9,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-
-import Link from 'next/link';
 import { RiRobot2Fill } from 'react-icons/ri';
 import { TbMessageChatbot } from 'react-icons/tb';
-import { Home, Search } from 'lucide-react';
+import { Home, LucideLogOut, Search } from 'lucide-react';
+
+import Link from 'next/link';
+
 import { ROUTES } from '@/constant/routes';
+import { useLogout } from '../../hooks/useLogout';
 
 const items = [
   {
@@ -35,6 +37,7 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const { handleLogout } = useLogout();
   return (
     <Sidebar>
       <SidebarHeader>
@@ -70,20 +73,18 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      {/* <SidebarFooter>
+      <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <button>
-                  <LucideLogOut />
-                  <span>Logout</span>
-                </button>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <button onClick={handleLogout}>
+                <LucideLogOut />
+                <span>Logout</span>
+              </button>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter> */}
+      </SidebarFooter>
     </Sidebar>
   );
 }
