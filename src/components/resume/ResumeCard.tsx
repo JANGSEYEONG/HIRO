@@ -1,9 +1,11 @@
 'use client';
 
 import { BsFiletypePdf } from 'react-icons/bs';
-import { Button } from '../ui/button';
 import { TbDownload, TbMessageChatbot } from 'react-icons/tb';
+
+import { Button } from '../ui/button';
 import { Separator } from '../ui/separator';
+import { fileService } from '@/services/fileService';
 
 /**
  * 1. 다운로드 버튼 클릭 시 다운로드 진행
@@ -14,16 +16,39 @@ interface ResumeCardProps {
   resumeId: string;
   fileName: string;
   fileSize: string;
+  selectPdfUrl: (resumeId: string) => void;
 }
-const ResumeCard = ({ resumeId, fileName, fileSize }: ResumeCardProps) => {
+const ResumeCard = ({ resumeId, fileName, fileSize, selectPdfUrl }: ResumeCardProps) => {
   const handleNavigateInterview = () => {
     alert(`${resumeId} 로 이동`);
   };
-  const handleDownloadFile = () => {
-    alert(`${resumeId} 다운로드`);
+  const handleDownloadFile = async () => {
+    try {
+      const response = await fileService.fileDownload({
+        resumeId,
+      });
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error(error);
+    }
   };
-  const handlePreviewFile = () => {
-    alert(`${resumeId} 미리보기`);
+  const handlePreviewFile = async () => {
+    try {
+      const response = await fileService.fileDownload({
+        resumeId,
+      });
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      selectPdfUrl(url);
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="flex items-center justify-between rounded-lg border p-3">
