@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function FindPage() {
   return (
     <div>
-      <h2 className="pl-4 pt-4">이력서 찾기</h2>
+      {/* <h2 className="pl-4 pt-4">이력서 찾기</h2> */}
       <div className="grid h-[calc(100vh-110px)] grid-cols-2 gap-4 p-4">
         <section className="h-full">
           <div>
@@ -23,9 +23,9 @@ export default function FindPage() {
                 <TabsTrigger value="1">챗봇과 찾기</TabsTrigger>
                 <TabsTrigger value="2">필터 & 정렬로 찾기</TabsTrigger>
               </TabsList>
-              <TabsContent value="1" className="h-[calc(100vh-170px)] w-full border p-4">
-                <div className="h-[calc(100vh-250px)] bg-yellow-300">
-                  <ScrollArea className="h-full bg-red-100 p-3 pr-2">
+              <TabsContent value="1" className="h-[calc(100vh-130px)] w-full border p-4">
+                <div className="h-[calc(100vh-210px)]">
+                  <ScrollArea className="h-full p-3 pr-2">
                     <BotMessage message={'hello'}></BotMessage>
                     <MyMessage message={'bye'}></MyMessage>
                     <MyMessage message={'bye'}></MyMessage>
