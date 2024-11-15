@@ -9,10 +9,15 @@ import ResumePreview from '@/components/resume/ResumePreview';
 import UploadResumeDialog from './_components/UploadResumeDialog';
 
 export default function HomePage() {
-  const [pdfUrl] = useState<string | null>(null);
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+
+  const selectPdfUrl = (pdfUrl: string) => {
+    setPdfUrl(pdfUrl);
+  };
+
   const testResume = [
-    { resumeId: 'resume1', fileName: '이름입니다.pdf', fileSize: '33MB' },
-    { resumeId: 'resume2', fileName: '이름입니다.pdf', fileSize: '33MB' },
+    { resumeId: 'resume1', fileName: '이름입니다.pdf', fileSize: '33MB', selectPdfUrl },
+    { resumeId: 'resume2', fileName: '이름입니다.pdf', fileSize: '33MB', selectPdfUrl },
   ];
 
   return (

@@ -16,8 +16,9 @@ interface ResumeCardProps {
   resumeId: string;
   fileName: string;
   fileSize: string;
+  selectPdfUrl: (resumeId: string) => void;
 }
-const ResumeCard = ({ resumeId, fileName, fileSize }: ResumeCardProps) => {
+const ResumeCard = ({ resumeId, fileName, fileSize, selectPdfUrl }: ResumeCardProps) => {
   const handleNavigateInterview = () => {
     alert(`${resumeId} 로 이동`);
   };
@@ -37,8 +38,17 @@ const ResumeCard = ({ resumeId, fileName, fileSize }: ResumeCardProps) => {
       console.error(error);
     }
   };
-  const handlePreviewFile = () => {
-    alert(`${resumeId} 미리보기`);
+  const handlePreviewFile = async () => {
+    try {
+      const response = await fileService.fileDownload({
+        resumeId,
+      });
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      selectPdfUrl(url);
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="flex items-center justify-between rounded-lg border p-3">
