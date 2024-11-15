@@ -23,14 +23,14 @@ instance.interceptors.request.use(
 );
 
 // 응답 인터셉터 - 에러 처리 일단 패스
-instance.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return response;
-  },
-  async (error: AxiosError) => {
-    return Promise.reject(error);
-  },
-);
+// instance.interceptors.response.use(
+//   (response: AxiosResponse) => {
+//     return response;
+//   },
+//   async (error: AxiosError) => {
+//     return Promise.reject(error);
+//   },
+// );
 
 export const handleAxiosError = (error: unknown) => {
   if (axios.isAxiosError(error)) {
