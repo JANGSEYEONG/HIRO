@@ -9,7 +9,7 @@ const MessageText = ({ message, className }: MessageTextProps) => {
   return (
     <p
       className={cn(
-        'body3-r whitespace-pre-wrap text-center text-neutral-500 flex-center',
+        'whitespace-pre-wrap text-center text-neutral-500 display5 flex-center',
         className,
       )}>
       {message}
