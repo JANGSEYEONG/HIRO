@@ -13,7 +13,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -43,24 +42,6 @@ export default function LoginPage() {
             className="bg-white-600 border border-black text-black hover:bg-gray-100">
             로그인
           </Button>
-          {/* <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button type="button">회원가입</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete your account and remove
-                  your data from our servers.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog> */}
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button type="button">회원가입</Button>
