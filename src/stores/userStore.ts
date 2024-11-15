@@ -3,6 +3,7 @@ import { createJSONStorage, persist, devtools } from 'zustand/middleware';
 import { USER_STORE_NAME } from './config';
 
 interface User {
+  userId: string;
   userName: string;
 }
 

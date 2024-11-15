@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/constant/routes';
 import { userService } from '../../../services/userService';
 import { useUserStore } from '@/stores/userStore';
+import { useAuthStore } from '@/stores/authStore';
 
 const loginSchema = z.object({
   userId: z.string().min(1, '아이디를 입력해 주세요.'),
@@ -28,6 +29,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 const LoginForm = () => {
   const router = useRouter();
   const setUser = useUserStore((state) => state.setUser);
+  const setLogin = useAuthStore((state) => state.setLogin);
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -38,7 +40,8 @@ const LoginForm = () => {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       const res = await userService.login(data);
-      setUser({ userName: res.name });
+      setUser({ userName: res.name, userId: res.userId });
+      setLogin(res.token);
       router.push(ROUTES.HOME.PATH);
     } catch (error) {
       console.error('Login failed:', error);
@@ -55,7 +58,7 @@ const LoginForm = () => {
             <FormItem>
               <FormLabel>아이디</FormLabel>
               <FormControl>
-                <Input placeholder="아이디를 입력하세요" {...field} />
+                <Input placeholder="아이디를 입력하세요" autoComplete="username" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,7 +72,12 @@ const LoginForm = () => {
             <FormItem>
               <FormLabel>비밀번호</FormLabel>
               <FormControl>
-                <Input type="current-password" placeholder="비밀번호를 입력하세요" {...field} />
+                <Input
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="비밀번호를 입력하세요"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
