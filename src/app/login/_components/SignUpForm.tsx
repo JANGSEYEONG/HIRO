@@ -21,7 +21,10 @@ const signUpSchema = z.object({
 });
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 
-const SignUpForm = () => {
+interface SignUpFormProps {
+  onSuccess: () => void;
+}
+const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -35,6 +38,7 @@ const SignUpForm = () => {
     try {
       console.log(data);
       await userService.signUp(data);
+      onSuccess();
     } catch (error) {
       console.error('signUp failed:', error);
     }

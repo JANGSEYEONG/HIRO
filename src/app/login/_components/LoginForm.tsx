@@ -55,7 +55,7 @@ const LoginForm = () => {
             <FormItem>
               <FormLabel>아이디</FormLabel>
               <FormControl>
-                <Input placeholder="아이디를 입력하세요" {...field} />
+                <Input placeholder="아이디를 입력하세요" autoComplete="username" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,7 +69,12 @@ const LoginForm = () => {
             <FormItem>
               <FormLabel>비밀번호</FormLabel>
               <FormControl>
-                <Input type="current-password" placeholder="비밀번호를 입력하세요" {...field} />
+                <Input
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="비밀번호를 입력하세요"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
