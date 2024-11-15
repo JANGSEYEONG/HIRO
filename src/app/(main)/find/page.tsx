@@ -7,5 +7,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function FindPage() {
-  return <div>이력서 찾기 페이지입니다</div>;
+  return <div className="p-4">이력서 찾기 페이지입니다</div>;
 }
