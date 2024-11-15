@@ -7,8 +7,12 @@ import { usePathname } from 'next/navigation';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const currentRoute = Object.values(ROUTES).find((route) => route.PATH === pathname);
+  const currentRoot = '/' + (pathname.split('/')[1] || '');
 
+  let currentRoute = Object.values(ROUTES).find((route) => route.PATH === pathname);
+  if (!currentRoute) {
+    currentRoute = Object.values(ROUTES).find((route) => route.ROOT === currentRoot);
+  }
   return (
     <SidebarProvider>
       <AppSidebar />

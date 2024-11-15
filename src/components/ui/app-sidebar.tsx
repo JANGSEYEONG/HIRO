@@ -31,7 +31,7 @@ const items = [
   },
   {
     title: 'Interview',
-    url: ROUTES.INTERVIEW.PATH,
+    url: ROUTES.INTERVIEW_INDEX.PATH,
     icon: TbMessageChatbot,
   },
 ];
