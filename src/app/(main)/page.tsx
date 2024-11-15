@@ -4,25 +4,23 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-import { useRouter } from 'next/navigation';
-import { useAuthStore } from '@/stores/authStore';
-import { ROUTES } from '@/constant/routes';
+// import { useRouter } from 'next/navigation';
+// import { useAuthStore } from '@/stores/authStore';
+// import { ROUTES } from '@/constant/routes';
 
 import ResumePreview from '@/components/resume/ResumePreview';
 import AllResumeList from './_components/AllResumeList';
 import UploadResumeDialog from './_components/UploadResumeDialog';
-import ErrorHandlingWrapper from '@/components/common/error/ErrorHandlingWrapper';
-import Spinner from '@/components/common/Spinner';
 
 export default function HomePage() {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  // const router = useRouter();
+  // const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-  const router = useRouter();
   const selectPdfUrl = (pdfUrl: string) => {
     setPdfUrl(pdfUrl);
   };
 
-  if (!isLoggedIn) router.push(ROUTES.LOGIN.PATH);
+  // if (!isLoggedIn) router.push(ROUTES.LOGIN.PATH);
 
   return (
     <div className="flex h-[calc(100vh-65px)] flex-col gap-y-3 p-4">
@@ -34,11 +32,7 @@ export default function HomePage() {
       </div>
       <div className="grid flex-grow grid-cols-2 gap-4 overflow-hidden">
         <ScrollArea className="h-full pr-2">
-          <ErrorHandlingWrapper
-            suspenseFallback={<Spinner />}
-            errorFallbackMessage="이력서를 불러오는데 문제가 발생했어요.">
-            <AllResumeList selectPdfUrl={selectPdfUrl} />
-          </ErrorHandlingWrapper>
+          <AllResumeList selectPdfUrl={selectPdfUrl} />
         </ScrollArea>
         <section>
           <ResumePreview pdfUrl={pdfUrl} />

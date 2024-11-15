@@ -1,7 +1,8 @@
 import { useAuthStore } from '@/stores/authStore';
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosInstance } from 'axios';
+
 const instance: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_URL,
+  baseURL: 'http://144.24.81.14',
 });
 
 // 요청 인터셉터
@@ -15,6 +16,9 @@ instance.interceptors.request.use(
     } else {
       delete config.headers['access_token'];
     }
+    // URL이 유효한지 디버깅을 위한 로그
+    console.log('Request URL:', config.baseURL, config.url);
+    return config;
     return config;
   },
   (error) => {
