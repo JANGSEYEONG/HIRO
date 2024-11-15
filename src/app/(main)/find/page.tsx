@@ -4,6 +4,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import BotMessage from '@/components/chatbot/BotMessage';
 import MyMessage from '@/components/chatbot/MyMessage';
 import ChattingInput from '@/components/chatbot/ChattingInput';
+import ResumeFilter from './_components/ResumeFilter';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -21,7 +22,7 @@ export default function FindPage() {
             <Tabs defaultValue="1">
               <TabsList className="grid w-[250px] grid-cols-2">
                 <TabsTrigger value="1">챗봇과 찾기</TabsTrigger>
-                <TabsTrigger value="2">필터 & 정렬로 찾기</TabsTrigger>
+                <TabsTrigger value="2">필터로 찾기</TabsTrigger>
               </TabsList>
               <TabsContent value="1" className="h-[calc(100vh-130px)] w-full border p-4">
                 <div className="h-[calc(100vh-210px)]">
@@ -47,7 +48,8 @@ export default function FindPage() {
                 <ChattingInput></ChattingInput>
               </TabsContent>
               <TabsContent value="2" className="h-[calc(100vh-170px)] w-full border p-4">
-                <div>서비스 준비중입니다</div>
+                <div className="mb-2">업로드 된 이력서를 바탕으로 추출된 필터입니다.</div>
+                <ResumeFilter />
               </TabsContent>
             </Tabs>
           </div>
