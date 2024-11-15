@@ -1,9 +1,11 @@
 'use client';
-import MessageText from '@/components/common/MessageText';
-import ResumeCard from '@/components/resume/ResumeCard';
+import { useState } from 'react';
+
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useState } from 'react';
+
+import ResumeCard from '@/components/resume/ResumeCard';
+import ResumePreview from '@/components/resume/ResumePreview';
 
 export default function HomePage() {
   const [pdfUrl] = useState<string | null>(null);
@@ -23,7 +25,7 @@ export default function HomePage() {
     <div className="flex h-[calc(100vh-65px)] flex-col gap-y-3 p-4">
       <div className="flex items-end justify-between">
         <h2>현재 업로드한 파일 수: 100</h2>
-        <Button>이력서 업로드 하기</Button>
+        <Button variant="outline">이력서 업로드 하기</Button>
       </div>
       <div className="grid grid-cols-2 gap-4 overflow-hidden">
         <ScrollArea className="h-full pr-2">
@@ -34,15 +36,7 @@ export default function HomePage() {
           </ul>
         </ScrollArea>
         <section>
-          <div className="h-full border flex-center">
-            {pdfUrl ? (
-              <object data={pdfUrl} type="application/pdf" className="h-screen w-full">
-                <p>PDF를 표시할 수 없습니다.</p>
-              </object>
-            ) : (
-              <MessageText message="미리보기할 이력서를 선택해 주세요." />
-            )}
-          </div>
+          <ResumePreview pdfUrl={pdfUrl} />
         </section>
       </div>
     </div>
