@@ -4,8 +4,9 @@ import { AUTH_STORE_NAME } from './config';
 import { useUserStore } from './userStore';
 
 interface AuthState {
+  accessToken: string | null;
   isLoggedIn: boolean;
-  setLogin: () => void;
+  setLogin: (accessToken: string) => void;
   setLogout: () => void;
 }
 
@@ -13,16 +14,18 @@ export const useAuthStore = create<AuthState>()(
   devtools(
     persist(
       (set) => ({
-        isLoggedIn: false,
         accessToken: null,
+        isLoggedIn: false,
         refreshToken: null,
-        setLogin: () => {
+        setLogin: (accessToken: string) => {
           set({
+            accessToken,
             isLoggedIn: true,
           });
         },
         setLogout: () => {
           set({
+            accessToken: null,
             isLoggedIn: false,
           });
           // 저장된 유저 정보 상태 초기화
@@ -40,14 +43,11 @@ export const useAuthStore = create<AuthState>()(
 if (typeof window !== 'undefined') {
   const initializeAuth = () => {
     const authStore = useAuthStore.getState();
-
-    // 로컬스토리지에 마지막 상태가 로그인이었으면 로그인 처리
-    if (authStore.isLoggedIn) {
-      authStore.setLogin();
+    if (authStore?.accessToken) {
+      authStore.setLogin(authStore.accessToken);
     } else {
       authStore.setLogout();
     }
   };
-
   initializeAuth();
 }
