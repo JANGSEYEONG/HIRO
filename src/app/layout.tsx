@@ -4,7 +4,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 
 import { Toaster } from '@/components/ui/toaster';
-import TanstackQueryProvider from '@/components/provider/TanstackQueryProvider';
+import TanstackQueryProvider from '@/components/common/provider/TanstackQueryProvider';
 
 const pretendard = localFont({
   src: '../../public/assets/fonts/PretendardVariable.woff2',
