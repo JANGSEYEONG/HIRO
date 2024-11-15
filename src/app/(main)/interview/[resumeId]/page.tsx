@@ -6,6 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function InterviewPage({ params: { resumeId } }: { params: { resumeId: string } }) {
-  return <div className="pt-[35px]">{resumeId} 에 대해 챗봇이랑 대화하기</div>;
+export default async function InterviewPage({ params }: { params: Promise<{ resumeId: string }> }) {
+  const resumeId = (await params).resumeId;
+  return <div>{resumeId} 에 대해 챗봇이랑 대화하기</div>;
 }
