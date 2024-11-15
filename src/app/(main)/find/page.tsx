@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import BotMessage from '@/components/chatbot/BotMessage';
 import MyMessage from '@/components/chatbot/MyMessage';
+import ChattingInput from '@/components/chatbot/ChattingInput';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -12,25 +14,39 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function FindPage() {
   return (
     <div>
-      이력서 찾기
-      <div className="grid grid-cols-2 gap-4 p-4">
-        <section>
+      <h2 className="pl-4 pt-4">이력서 찾기</h2>
+      <div className="grid h-[calc(100vh-110px)] grid-cols-2 gap-4 p-4">
+        <section className="h-full">
           <div>
-            <Tabs defaultValue="1" className="h-[80vh] w-full">
+            <Tabs defaultValue="1">
               <TabsList className="grid w-[250px] grid-cols-2">
                 <TabsTrigger value="1">챗봇과 찾기</TabsTrigger>
                 <TabsTrigger value="2">필터 & 정렬로 찾기</TabsTrigger>
               </TabsList>
-              <TabsContent value="1" className="h-full w-full border p-4">
-                <BotMessage message={'hello'}></BotMessage>
-                <MyMessage message={'bye'}></MyMessage>
-                <BotMessage
-                  message={
-                    'hello hello hello hello hellohellohellovhellohellohellohellohell'
-                  }></BotMessage>
-                <MyMessage message={'byebyebyebyebyebye'}></MyMessage>
+              <TabsContent value="1" className="h-[calc(100vh-170px)] w-full border p-4">
+                <div className="h-[calc(100vh-250px)] bg-yellow-300">
+                  <ScrollArea className="h-full bg-red-100 p-3 pr-2">
+                    <BotMessage message={'hello'}></BotMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <MyMessage message={'bye'}></MyMessage>
+                    <BotMessage
+                      message={
+                        'hello hello hello hello hellohellohellovhellohellohellohellohell'
+                      }></BotMessage>
+                    <MyMessage message={'byebyebyebyebyebye'}></MyMessage>
+                  </ScrollArea>
+                </div>
+                <ChattingInput></ChattingInput>
               </TabsContent>
-              <TabsContent value="2" className="h-full w-full border p-4">
+              <TabsContent value="2" className="h-[calc(100vh-170px)] w-full border p-4">
                 <div>서비스 준비중입니다</div>
               </TabsContent>
             </Tabs>
