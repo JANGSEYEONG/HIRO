@@ -1,7 +1,7 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
+  // SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
@@ -13,22 +13,23 @@ import {
 import Link from 'next/link';
 import { RiRobot2Fill } from 'react-icons/ri';
 import { TbMessageChatbot } from 'react-icons/tb';
-import { Home, LucideLogOut, Search } from 'lucide-react';
+import { Home, Search } from 'lucide-react';
+import { ROUTES } from '@/constant/routes';
 
 const items = [
   {
     title: 'Home',
-    url: '/',
+    url: ROUTES.HOME.PATH,
     icon: Home,
   },
   {
     title: 'Find',
-    url: '/find',
+    url: ROUTES.FIND.PATH,
     icon: Search,
   },
   {
     title: 'Interview',
-    url: '/interview',
+    url: ROUTES.INTERVIEW.PATH,
     icon: TbMessageChatbot,
   },
 ];
@@ -40,7 +41,7 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href="/">
+              <Link href={ROUTES.HOME.PATH}>
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   <RiRobot2Fill className="size-4" />
                 </div>
@@ -69,7 +70,7 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
+      {/* <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuItem>
@@ -82,7 +83,7 @@ export function AppSidebar() {
             </SidebarMenuItem>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter>
+      </SidebarFooter> */}
     </Sidebar>
   );
 }

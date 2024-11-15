@@ -1,8 +1,14 @@
+'use client';
 import { AppSidebar } from '@/components/ui/app-sidebar';
 import { Separator } from '@/components/ui/separator';
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { ROUTES } from '@/constant/routes';
+import { usePathname } from 'next/navigation';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const currentRoute = Object.values(ROUTES).find((route) => route.PATH === pathname);
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -10,7 +16,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-2 h-4" />
-          Building Your Application
+          <h1 className="body4">{currentRoute?.TITLE}</h1>
         </header>
         <main>{children}</main>
       </SidebarInset>
