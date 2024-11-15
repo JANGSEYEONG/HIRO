@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/alert-dialog';
 
 export default function LoginPage() {
+
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
       <Card className="w-full max-w-md rounded-lg bg-white p-6 shadow-md">
@@ -93,4 +94,5 @@ export default function LoginPage() {
       </Card>
     </div>
   );
+
 }
