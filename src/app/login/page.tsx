@@ -8,6 +8,17 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 export default function LoginPage() {
   return (
@@ -32,7 +43,52 @@ export default function LoginPage() {
             className="bg-white-600 border border-black text-black hover:bg-gray-100">
             로그인
           </Button>
-          <Button type="button">회원가입</Button>
+          {/* <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button type="button">회원가입</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete your account and remove
+                  your data from our servers.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction>Continue</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog> */}
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button type="button">회원가입</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>회원가입</AlertDialogTitle>
+              </AlertDialogHeader>
+              <div className="space-y-4 p-4">
+                <div>
+                  <Label>이름</Label>
+                  <Input type="text" placeholder="이름을 입력하세요" />
+                </div>
+                <div>
+                  <Label>아이디</Label>
+                  <Input type="text" placeholder="아이디를 입력하세요" />
+                </div>
+                <div>
+                  <Label>비밀번호</Label>
+                  <Input type="password" placeholder="비밀번호를 입력하세요" />
+                </div>
+              </div>
+              <AlertDialogFooter>
+                <AlertDialogCancel>취소</AlertDialogCancel>
+                <AlertDialogAction className="text-white">회원가입</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </Card>
     </div>
