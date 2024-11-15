@@ -1,3 +1,4 @@
+import plugin from 'tailwindcss/plugin';
 import type { Config } from 'tailwindcss';
 import tailwindcssAnimate from 'tailwindcss-animate';
 
@@ -72,5 +73,129 @@ export default {
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [
+    tailwindcssAnimate,
+
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        '.headline1': {
+          fontSize: '96px',
+          fontWeight: '700',
+          lineHeight: '1.2',
+        },
+        '.headline2': {
+          fontSize: '60px',
+          fontWeight: '700',
+          lineHeight: '1.3',
+        },
+        '.headline3': {
+          fontSize: '42px',
+          fontWeight: '700',
+          lineHeight: '1.4',
+        },
+        '.headline4': {
+          fontSize: '36px',
+          fontWeight: '700',
+          lineHeight: '1.4',
+        },
+        '.body1': {
+          fontSize: '28px',
+          fontWeight: '600',
+          lineHeight: '1.6',
+        },
+        '.body2': {
+          fontSize: '24px',
+          fontWeight: '600',
+          lineHeight: '1.6',
+        },
+        '.body3': {
+          fontSize: '24px',
+          fontWeight: '500',
+          lineHeight: '1.6',
+        },
+        '.body4': {
+          fontSize: '22px',
+          fontWeight: '500',
+          lineHeight: '1.6',
+        },
+        '.body5': {
+          fontSize: '22px',
+          fontWeight: '400',
+          lineHeight: '1.6',
+        },
+        '.body6': {
+          fontSize: '20px',
+          fontWeight: '600',
+          lineHeight: '1.6',
+        },
+        '.body7': {
+          fontSize: '20px',
+          fontWeight: '500',
+          lineHeight: '1.6',
+        },
+        '.body8': {
+          fontSize: '18px',
+          fontWeight: '500',
+          lineHeight: '1.6',
+        },
+        '.mobile1': {
+          fontSize: '16px',
+          fontWeight: '500',
+          lineHeight: '1.6',
+        },
+        '.mobile2': {
+          fontSize: '14px',
+          fontWeight: '500',
+          lineHeight: '1.4',
+        },
+        '.caption': {
+          fontSize: '12px',
+          fontWeight: '400',
+          lineHeight: '1.4',
+        },
+        '.display1': {
+          fontSize: '20px',
+          fontWeight: '400',
+          lineHeight: '1.4',
+        },
+        '.display2': {
+          fontSize: '20px',
+          fontWeight: '700',
+          lineHeight: '1.4',
+        },
+        '.display3': {
+          fontSize: '18px',
+          fontWeight: '400',
+          lineHeight: '1.4',
+        },
+        '.display4': {
+          fontSize: '16px',
+          fontWeight: '400',
+          lineHeight: '1.4',
+        },
+        '.display5': {
+          fontSize: '14px',
+          fontWeight: '400',
+          lineHeight: '1.2',
+        },
+        '.display6': {
+          fontSize: '16px',
+          fontWeight: '600',
+          lineHeight: '1.4',
+        },
+        '.flex-center': {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        '.flex-col-center': {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      };
+      addUtilities(newUtilities);
+    }),
+  ],
 } satisfies Config;
