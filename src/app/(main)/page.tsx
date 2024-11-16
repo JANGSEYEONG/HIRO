@@ -7,16 +7,11 @@ import ResumePreview from '@/components/resume/ResumePreview';
 import AllResumeList from './_components/AllResumeList';
 import UploadResumeDialog from './_components/UploadResumeDialog';
 import { Label } from '@/components/ui/label';
+import { usePdfUrl } from '@/hooks/usePdfUrl';
 
 export default function HomePage() {
-  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-  const [count, setCount] = useState(0);
-  const selectPdfUrl = (pdfUrl: string) => {
-    setPdfUrl(pdfUrl);
-  };
-  const setFileCount = (count: number) => {
-    setCount(count);
-  };
+  const { pdfUrl, selectPdfUrl, count, setFileCount } = usePdfUrl();
+
   return (
     <div className="flex h-[calc(100vh-65px)] flex-col gap-y-3 p-4">
       <div className="flex flex-shrink-0 items-end justify-between">

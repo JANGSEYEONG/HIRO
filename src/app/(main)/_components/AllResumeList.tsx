@@ -6,11 +6,11 @@ import ResumeCard from '@/components/resume/ResumeCard';
 import { useGetAllResume } from '@/hooks/queries/useResumeService';
 import { useEffect } from 'react';
 
-interface AllResumeList {
+interface AllResumeListProps {
   selectPdfUrl: (pdfUrl: string) => void;
   setFileCount: (count: number) => void;
 }
-const AllResumeList = ({ selectPdfUrl, setFileCount }: AllResumeList) => {
+const AllResumeList = ({ selectPdfUrl, setFileCount }: AllResumeListProps) => {
   const { data, isLoading, isError, isSuccess } = useGetAllResume();
   console.log(data);
   const testResume = [
