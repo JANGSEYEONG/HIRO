@@ -11,25 +11,61 @@ const ResumeList = ({ selectResume }: ResumeListProps) => {
   //const { selectedJob, selectedExperience, selectedLanguage } = useFilterStore();
   const testResume = [
     {
-      resumeId: '8d0c239f-2274-4a47-91c3-cb95b1b00275',
+      resumeId: 'resume3',
       fileName: '이름입니다.pdf',
-      fileSize: '33MB',
+      fileSize: 100000,
       selectResume,
+      analyzeCompleted: false,
     },
     {
-      resumeId: 'cc672428-cbb8-4afe-91da-bafd803930e0',
+      resumeId: 'resume4',
       fileName: '이름입니다.pdf',
-      fileSize: '33MB',
+      fileSize: 100000,
       selectResume,
+      analyzeCompleted: false,
     },
-    { resumeId: 'resume3', fileName: '이름입니다.pdf', fileSize: '33MB', selectResume },
-    { resumeId: 'resume4', fileName: '이름입니다.pdf', fileSize: '33MB', selectResume },
-    { resumeId: 'resume5', fileName: '이름입니다.pdf', fileSize: '33MB', selectResume },
-    { resumeId: 'resume6', fileName: '이름입니다.pdf', fileSize: '33MB', selectResume },
-    { resumeId: 'resume7', fileName: '이름입니다.pdf', fileSize: '33MB', selectResume },
-    { resumeId: 'resume8', fileName: '이름입니다.pdf', fileSize: '33MB', selectResume },
-    { resumeId: 'resume9', fileName: '이름입니다.pdf', fileSize: '33MB', selectResume },
-    { resumeId: 'resume10', fileName: '이름입니다.pdf', fileSize: '33MB', selectResume },
+    {
+      resumeId: 'resume5',
+      fileName: '이름입니다.pdf',
+      fileSize: 100000,
+      selectResume,
+      analyzeCompleted: false,
+    },
+    {
+      resumeId: 'resume6',
+      fileName: '이름입니다.pdf',
+      fileSize: 100000,
+      selectResume,
+      analyzeCompleted: false,
+    },
+    {
+      resumeId: 'resume7',
+      fileName: '이름입니다.pdf',
+      fileSize: 100000,
+      selectResume,
+      analyzeCompleted: false,
+    },
+    {
+      resumeId: 'resume8',
+      fileName: '이름입니다.pdf',
+      fileSize: 100000,
+      selectResume,
+      analyzeCompleted: false,
+    },
+    {
+      resumeId: 'resume9',
+      fileName: '이름입니다.pdf',
+      fileSize: 100000,
+      selectResume,
+      analyzeCompleted: false,
+    },
+    {
+      resumeId: 'resume10',
+      fileName: '이름입니다.pdf',
+      fileSize: 100000,
+      selectResume,
+      analyzeCompleted: false,
+    },
   ];
   return (
     <ul className="pd-4 flex flex-col gap-y-4">
