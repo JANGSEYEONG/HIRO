@@ -1,6 +1,6 @@
 'use client';
-
 import { useState } from 'react';
+import { useFilterStore } from '@/stores/useFilterStore';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,9 +12,70 @@ import { Badge } from '@/components/ui/badge';
 import { LuFilter } from 'react-icons/lu';
 
 export default function ResumeFilter() {
-  const [selectedJob, setSelectedJob] = useState<string | null>(null);
-  const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
-  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+  const resume_responses = [
+    {
+      resume_id: 1,
+      applicant_name: '김철수',
+      job_category: 'backend',
+      years: '0-3',
+      language: 'python',
+    },
+    {
+      resume_id: 2,
+      applicant_name: '이영희',
+      job_category: 'frontend',
+      years: '3-7',
+      language: 'javascript',
+    },
+    {
+      resume_id: 3,
+      applicant_name: '박지민',
+      job_category: 'ai',
+      years: '7-10',
+      language: 'python',
+    },
+    {
+      resume_id: 4,
+      applicant_name: '최동훈',
+      job_category: 'fullstack',
+      years: '3-7',
+      language: 'typescript',
+    },
+    {
+      resume_id: 5,
+      applicant_name: '정수진',
+      job_category: 'backend',
+      years: '7-10',
+      language: 'java',
+    },
+    {
+      resume_id: 6,
+      applicant_name: '한미래',
+      job_category: 'frontend',
+      years: '0-3',
+      language: 'typescript',
+    },
+    {
+      resume_id: 7,
+      applicant_name: '송태양',
+      job_category: 'backend',
+      years: '3-7',
+      language: 'kotlin',
+    },
+    {
+      resume_id: 8,
+      applicant_name: '강하늘',
+      job_category: 'ai',
+      years: '7-10',
+      language: 'python',
+    },
+  ];
+  const { setSelectedJob, setSelectedExperience, setSelectedLanguage } = useFilterStore();
+
+  // 로컬 상태로 임시 저장
+  const [tempJob, setTempJob] = useState<string | null>(null);
+  const [tempExperience, setTempExperience] = useState<string | null>(null);
+  const [tempLanguage, setTempLanguage] = useState<string | null>(null);
 
   const jobCategories = [
     { label: 'Frontend', value: 'frontend' },
@@ -73,6 +134,27 @@ export default function ResumeFilter() {
     );
   };
 
+  const handleSearch = () => {
+    setSelectedJob(tempJob); // zustand에 상태 저장
+    setSelectedExperience(tempExperience);
+    setSelectedLanguage(tempLanguage);
+
+    const filteredResumes = resume_responses.filter((resume) => {
+      const matchesJob = tempJob ? resume.job_category === tempJob : true;
+      const matchesExperience = tempExperience ? resume.years === tempExperience : true;
+      const matchesLanguage = tempLanguage ? resume.language === tempLanguage : true;
+
+      return matchesJob && matchesExperience && matchesLanguage;
+    });
+
+    console.log('선택한 필터:', {
+      직무: tempJob,
+      경력: tempExperience,
+      언어: tempLanguage,
+    });
+    console.log('필터링된 이력서:>>>>', filteredResumes);
+  };
+
   return (
     <div>
       {/* <h3 className="mb-4 text-lg font-semibold">필터링 기준</h3> */}
@@ -83,22 +165,22 @@ export default function ResumeFilter() {
         <FilterDropdown
           label="직무 카테고리"
           options={jobCategories}
-          selectedValue={selectedJob}
-          onChange={setSelectedJob}
+          selectedValue={tempJob}
+          onChange={setTempJob} // 로컬 상태 업데이트
         />
         <FilterDropdown
           label="경력"
           options={experiences}
-          selectedValue={selectedExperience}
-          onChange={setSelectedExperience}
+          selectedValue={tempExperience}
+          onChange={setTempExperience} // 로컬 상태 업데이트
         />
         <FilterDropdown
           label="프로그래밍 언어"
           options={programmingLanguages}
-          selectedValue={selectedLanguage}
-          onChange={setSelectedLanguage}
+          selectedValue={tempLanguage}
+          onChange={setTempLanguage} // 로컬 상태 업데이트
         />
-        <Button>검색</Button>
+        <Button onClick={handleSearch}>검색</Button>
       </div>
     </div>
   );
