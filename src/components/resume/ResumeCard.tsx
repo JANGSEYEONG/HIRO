@@ -60,7 +60,9 @@ const ResumeCard = ({
         <BsFiletypePdf className="h-6 w-6" />
         <div className="grid gap-1.5 text-sm">
           <div className="max-w-80 truncate">{fileName}</div>
-          <div className="text-xs text-neutral-400">{formatFileSize(fileSize || 0)}</div>
+          {fileSize !== 0 && (
+            <div className="text-xs text-neutral-400">{formatFileSize(fileSize || 0)}</div>
+          )}
         </div>
       </div>
       <div className="flex-shrink-0 flex-center">
