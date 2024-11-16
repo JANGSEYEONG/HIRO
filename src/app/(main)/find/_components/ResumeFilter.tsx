@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFilterStore } from '@/stores/useFilterStore';
 import {
   DropdownMenu,
@@ -10,8 +10,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { LuFilter } from 'react-icons/lu';
+import { useGetAllResume } from '@/hooks/queries/useResumeService';
 
 export default function ResumeFilter() {
+  const { filteredResumes, setFilteredResumes } = useFilterStore();
+  const { data } = useGetAllResume();
+  console.log('!!!!', data);
   const resume_responses = [
     {
       resume_id: 1,
@@ -139,10 +143,16 @@ export default function ResumeFilter() {
     setSelectedExperience(tempExperience);
     setSelectedLanguage(tempLanguage);
 
-    const filteredResumes = resume_responses.filter((resume) => {
-      const matchesJob = tempJob ? resume.job_category === tempJob : true;
-      const matchesExperience = tempExperience ? resume.years === tempExperience : true;
-      const matchesLanguage = tempLanguage ? resume.language === tempLanguage : true;
+    const filteredResumes = (data || []).filter((resume) => {
+      console.log('::::::');
+      console.log('resume.career::::', resume.career);
+      console.log('tempExperience::::', tempExperience);
+      //console.log('resume.jobCategories[0]', resume.jobCategories[0]);
+      //console.log('tempLanguage::::', tempLanguage);
+
+      const matchesJob = tempJob !== null ? resume.jobCategories[0] === tempJob : true;
+      const matchesExperience = tempExperience ? resume.career === tempExperience : true;
+      const matchesLanguage = tempLanguage ? resume.languages[0] === tempLanguage : true;
 
       return matchesJob && matchesExperience && matchesLanguage;
     });
@@ -153,6 +163,7 @@ export default function ResumeFilter() {
       언어: tempLanguage,
     });
     console.log('필터링된 이력서:>>>>', filteredResumes);
+    setFilteredResumes(filteredResumes);
   };
 
   return (
