@@ -6,6 +6,9 @@ import { TbDownload, TbMessageChatbot } from 'react-icons/tb';
 import { Button } from '../ui/button';
 import { Separator } from '../ui/separator';
 import { fileService } from '@/services/fileService';
+import AnalyzeSpinner from '../common/spinner/AnalyzeSpinner';
+import { useRouter } from 'next/navigation';
+import { formatFileSize } from '@/lib/file';
 
 /**
  * 1. 다운로드 버튼 클릭 시 다운로드 진행
@@ -15,12 +18,20 @@ import { fileService } from '@/services/fileService';
 interface ResumeCardProps {
   resumeId: string;
   fileName: string;
-  fileSize: string;
+  fileSize: number;
+  analyzeCompleted: boolean;
   selectResume: (resumeId: string) => void;
 }
-const ResumeCard = ({ resumeId, fileName, fileSize, selectResume }: ResumeCardProps) => {
+const ResumeCard = ({
+  resumeId,
+  fileName,
+  fileSize,
+  analyzeCompleted,
+  selectResume,
+}: ResumeCardProps) => {
+  const router = useRouter();
   const handleNavigateInterview = () => {
-    alert(`${resumeId} 로 이동`);
+    router.push(`/interview/${resumeId}`);
   };
   const handleDownloadFile = async () => {
     try {
@@ -42,14 +53,14 @@ const ResumeCard = ({ resumeId, fileName, fileSize, selectResume }: ResumeCardPr
     selectResume(resumeId);
   };
   return (
-    <div className="flex items-center justify-between rounded-lg border p-3">
+    <div className="relative flex items-center justify-between overflow-hidden rounded-lg border p-3">
       <div
         className="flex flex-1 cursor-pointer items-center gap-x-4"
         onClick={handleSelectPreviewFile}>
         <BsFiletypePdf className="h-6 w-6" />
         <div className="grid gap-1.5 text-sm">
-          <div>{fileName}</div>
-          <div className="text-xs text-neutral-400">{fileSize}</div>
+          <div className="max-w-80 truncate">{fileName}</div>
+          <div className="text-xs text-neutral-400">{formatFileSize(fileSize || 0)}</div>
         </div>
       </div>
       <div className="flex-shrink-0 flex-center">
@@ -63,6 +74,11 @@ const ResumeCard = ({ resumeId, fileName, fileSize, selectResume }: ResumeCardPr
           <span className="sr-only">Download</span>
         </Button>
       </div>
+      {!analyzeCompleted && (
+        <div className="absolute left-0 h-full w-full backdrop-blur-sm flex-center">
+          <AnalyzeSpinner />
+        </div>
+      )}
     </div>
   );
 };
