@@ -17,7 +17,7 @@ const ResumePreview = ({ resumeId }: ResumePreviewProps) => {
       const url = URL.createObjectURL(blob);
       setPdfUrl(url);
     }
-  }, [data]);
+  }, [data, isSuccess, setPdfUrl]);
 
   return (
     <div className="h-full border flex-center">
