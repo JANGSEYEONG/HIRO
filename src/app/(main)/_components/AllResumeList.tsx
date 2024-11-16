@@ -6,16 +6,26 @@ import ResumeCard from '@/components/resume/ResumeCard';
 import { useGetAllResume } from '@/hooks/queries/useResumeService';
 import { useEffect } from 'react';
 
-interface AllResumeList {
-  selectPdfUrl: (pdfUrl: string) => void;
+interface AllResumeListProps {
+  selectResume: (resumeId: string) => void;
   setFileCount: (count: number) => void;
 }
-const AllResumeList = ({ selectPdfUrl, setFileCount }: AllResumeList) => {
+const AllResumeList = ({ selectResume, setFileCount }: AllResumeListProps) => {
   const { data, isLoading, isError, isSuccess } = useGetAllResume();
   console.log(data);
   const testResume = [
-    { resumeId: 'resume1', fileName: '이름입니다.pdf', fileSize: '33MB', selectPdfUrl },
-    { resumeId: 'resume2', fileName: '이름입니다.pdf', fileSize: '33MB', selectPdfUrl },
+    {
+      resumeId: '8d0c239f-2274-4a47-91c3-cb95b1b00275',
+      fileName: '이름입니다.pdf',
+      fileSize: '33MB',
+      selectResume,
+    },
+    {
+      resumeId: 'cc672428-cbb8-4afe-91da-bafd803930e0',
+      fileName: '이름입니다.pdf',
+      fileSize: '33MB',
+      selectResume,
+    },
   ];
   useEffect(() => {
     if (isSuccess && data) {

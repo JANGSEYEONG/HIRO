@@ -1,4 +1,7 @@
+import { Label } from '@/components/ui/label';
 import { Metadata } from 'next';
+
+import SelectResumeArea from './_components/SelectResumeArea';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -7,5 +10,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function InterviewIndexPage() {
-  return <div className="p-4">면접질문 뽑아내는 페이지, 여기서 이력서 선택하게 함</div>;
+  return (
+    <div className="flex h-[calc(100vh-65px)] flex-col gap-y-3 p-4">
+      <div className="flex flex-shrink-0 items-end justify-between">
+        <Label>면접 질문을 추출해볼 이력서를 선택해 주세요.</Label>
+      </div>
+      <SelectResumeArea />
+    </div>
+  );
 }
