@@ -1,6 +1,7 @@
 import MessageText from '../common/MessageText';
 import { useFileDownload } from '@/hooks/queries/useFileService';
 import { useEffect, useState } from 'react';
+import AnalyzeSpinner from '../common/spinner/AnalyzeSpinner';
 
 interface ResumePreviewProps {
   resumeId: string | null;
@@ -9,7 +10,7 @@ interface ResumePreviewProps {
 const ResumePreview = ({ resumeId }: ResumePreviewProps) => {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 
-  const { data, isSuccess } = useFileDownload({ resumeId });
+  const { data, isLoading, isSuccess } = useFileDownload({ resumeId });
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -25,6 +26,8 @@ const ResumePreview = ({ resumeId }: ResumePreviewProps) => {
         <object data={pdfUrl} type="application/pdf" className="h-screen w-full">
           <MessageText message="PDF를 표시할 수 없습니다." />
         </object>
+      ) : isLoading ? (
+        <AnalyzeSpinner />
       ) : (
         <MessageText message="미리보기할 이력서를 선택해 주세요." />
       )}
