@@ -8,7 +8,8 @@ interface FindWithChatbotProps {
   selectResume: (resumeId: string) => void;
 }
 
-const FindWithChatbot = ({}: FindWithChatbotProps) => {
+const FindWithChatbot = ({ selectResume }: FindWithChatbotProps) => {
+  console.log(selectResume);
   return (
     <TabsContent value="1" className="h-[calc(100vh-130px)] w-full border p-4">
       <div className="h-[calc(100vh-210px)]">
