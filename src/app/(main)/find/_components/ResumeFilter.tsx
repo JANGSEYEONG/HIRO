@@ -169,9 +169,9 @@ export default function ResumeFilter() {
   return (
     <div>
       {/* <h3 className="mb-4 text-lg font-semibold">필터링 기준</h3> */}
-      <div className="flex space-x-4">
+      <div className="flex space-x-1">
         <Badge className="bg-gray-400">
-          <LuFilter />
+          <LuFilter className="" />
         </Badge>
         <FilterDropdown
           label="직무 카테고리"

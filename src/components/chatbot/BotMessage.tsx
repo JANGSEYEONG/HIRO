@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { RiRobot2Fill } from 'react-icons/ri';
 interface MsgProps {
   message: string;
