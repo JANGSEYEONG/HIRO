@@ -16,9 +16,9 @@ interface ResumeCardProps {
   resumeId: string;
   fileName: string;
   fileSize: string;
-  selectPdfUrl: (resumeId: string) => void;
+  selectResume: (resumeId: string) => void;
 }
-const ResumeCard = ({ resumeId, fileName, fileSize, selectPdfUrl }: ResumeCardProps) => {
+const ResumeCard = ({ resumeId, fileName, fileSize, selectResume }: ResumeCardProps) => {
   const handleNavigateInterview = () => {
     alert(`${resumeId} 로 이동`);
   };
@@ -38,21 +38,14 @@ const ResumeCard = ({ resumeId, fileName, fileSize, selectPdfUrl }: ResumeCardPr
       console.error(error);
     }
   };
-  const handlePreviewFile = async () => {
-    try {
-      const response = await fileService.fileDownload({
-        resumeId,
-      });
-      const blob = new Blob([response], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      selectPdfUrl(url);
-    } catch (error) {
-      console.error(error);
-    }
+  const handleSelectPreviewFile = () => {
+    selectResume(resumeId);
   };
   return (
     <div className="flex items-center justify-between rounded-lg border p-3">
-      <div className="flex flex-1 cursor-pointer items-center gap-x-4" onClick={handlePreviewFile}>
+      <div
+        className="flex flex-1 cursor-pointer items-center gap-x-4"
+        onClick={handleSelectPreviewFile}>
         <BsFiletypePdf className="h-6 w-6" />
         <div className="grid gap-1.5 text-sm">
           <div>{fileName}</div>

@@ -9,10 +9,10 @@ import UploadResumeDialog from './_components/UploadResumeDialog';
 import { Label } from '@/components/ui/label';
 
 export default function HomePage() {
-  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+  const [resumeId, setResumeId] = useState<string | null>(null);
   const [count, setCount] = useState(0);
-  const selectPdfUrl = (pdfUrl: string) => {
-    setPdfUrl(pdfUrl);
+  const selectResume = (resumeId: string) => {
+    setResumeId(resumeId);
   };
   const setFileCount = (count: number) => {
     setCount(count);
@@ -27,10 +27,10 @@ export default function HomePage() {
       </div>
       <div className="grid flex-grow grid-cols-2 gap-4 overflow-hidden">
         <ScrollArea className="h-full pr-2">
-          <AllResumeList selectPdfUrl={selectPdfUrl} setFileCount={setFileCount} />
+          <AllResumeList selectResume={selectResume} setFileCount={setFileCount} />
         </ScrollArea>
         <section>
-          <ResumePreview pdfUrl={pdfUrl} />
+          <ResumePreview resumeId={resumeId} />
         </section>
       </div>
     </div>

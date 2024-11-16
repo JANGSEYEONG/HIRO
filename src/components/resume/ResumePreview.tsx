@@ -1,13 +1,27 @@
 import MessageText from '../common/MessageText';
+import { useFileDownload } from '@/hooks/queries/useFileService';
+import { useEffect, useState } from 'react';
 
 interface ResumePreviewProps {
-  pdfUrl: string | null;
+  resumeId: string | null;
 }
 
-const ResumePreview = ({ pdfUrl }: ResumePreviewProps) => {
+const ResumePreview = ({ resumeId }: ResumePreviewProps) => {
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+
+  const { data, isSuccess } = useFileDownload({ resumeId });
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      const blob = new Blob([data], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      setPdfUrl(url);
+    }
+  }, [data]);
+
   return (
     <div className="h-full border flex-center">
-      {pdfUrl ? (
+      {resumeId && pdfUrl ? (
         <object data={pdfUrl} type="application/pdf" className="h-screen w-full">
           <MessageText message="PDF를 표시할 수 없습니다." />
         </object>
