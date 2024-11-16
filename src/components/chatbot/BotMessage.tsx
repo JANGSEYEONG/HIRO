@@ -12,7 +12,7 @@ export default function BotMessage({ message }: MsgProps) {
           <RiRobot2Fill className="h-6 w-6 text-gray-600" />
         </AvatarFallback>
       </Avatar>
-      <div className="max-w-xs rounded-lg bg-blue-100 p-3 text-gray-800">
+      <div className="max-w-md rounded-lg bg-blue-100 p-3 text-gray-800">
         <p>{message}</p>
       </div>
     </div>
